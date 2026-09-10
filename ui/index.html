@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>mowanettest</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- ------------------------------------------------------ navegação -->
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">mowanettest</span>
+      </div>
+
+      <nav class="nav" aria-label="Telas">
+        <button class="nav-item is-active" data-view="test" type="button">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3a7 7 0 0 1 7 7h-2a5 5 0 0 0-5-5 5 5 0 0 0-5 5H3a7 7 0 0 1 7-7Z"/><path d="M10 10.8 13.4 7l-2.3 4.6a1.3 1.3 0 1 1-1.1-.8Z"/></svg>
+          Teste
+        </button>
+        <button class="nav-item" data-view="history" type="button">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 4h12v2H4zm0 5h12v2H4zm0 5h8v2H4z"/></svg>
+          Histórico
+        </button>
+      </nav>
+
+      <div class="sidebar-foot">
+        <span id="app-version">v1.0.0</span>
+      </div>
+    </aside>
+
+    <!-- ----------------------------------------------------- tela: teste -->
+    <main class="content" id="view-test">
+      <div class="stage">
+
+        <p class="status" id="status">Pronto para medir sua conexão</p>
+
+        <div class="dial">
+          <svg class="dial-ring" viewBox="0 0 200 200" aria-hidden="true">
+            <circle class="ring-track" cx="100" cy="100" r="92"/>
+            <circle class="ring-fill" cx="100" cy="100" r="92" id="ring"/>
+          </svg>
+          <button class="dial-button" id="start" type="button">
+            <span class="dial-label" id="dial-label">Iniciar teste</span>
+            <span class="dial-value" id="dial-value" hidden>
+              <em id="live-speed">0.00</em><small>Mbps</small>
+            </span>
+          </button>
+        </div>
+
+        <canvas class="trace" id="trace" height="72" aria-hidden="true"></canvas>
+
+        <div class="metrics" id="metrics">
+          <div class="metric metric-lg is-download">
+            <span class="metric-label">Download</span>
+            <span class="metric-value" id="m-download">—</span>
+            <span class="metric-unit">Mbps</span>
+          </div>
+          <div class="metric metric-lg is-upload">
+            <span class="metric-label">Upload</span>
+            <span class="metric-value" id="m-upload">—</span>
+            <span class="metric-unit">Mbps</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Ping</span>
+            <span class="metric-value" id="m-ping">—</span>
+            <span class="metric-unit">ms</span>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Jitter</span>
+            <span class="metric-value" id="m-jitter">—</span>
+            <span class="metric-unit">ms</span>
+          </div>
+        </div>
+
+        <p class="connection" id="connection"></p>
+        <p class="alert" id="alert" hidden></p>
+
+      </div>
+    </main>
+
+    <!-- -------------------------------------------------- tela: histórico -->
+    <main class="content" id="view-history" hidden>
+      <header class="head">
+        <h1>Histórico</h1>
+        <button class="btn-ghost" id="open-folder" type="button">Abrir pasta hist</button>
+      </header>
+
+      <section class="summary" id="summary" hidden>
+        <div class="summary-item">
+          <span class="summary-label">Média de download</span>
+          <strong class="summary-value is-download"><span id="s-download">0</span> Mbps</strong>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Média de upload</span>
+          <strong class="summary-value is-upload"><span id="s-upload">0</span> Mbps</strong>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Testes registrados</span>
+          <strong class="summary-value"><span id="s-count">0</span></strong>
+        </div>
+      </section>
+
+      <div class="table" id="table" hidden>
+        <div class="row row-head">
+          <span>Data e hora</span>
+          <span class="num">Download</span>
+          <span class="num">Upload</span>
+          <span class="num">Ping</span>
+          <span></span>
+        </div>
+        <div id="rows"></div>
+      </div>
+
+      <div class="empty" id="empty" hidden>
+        <p class="empty-title">Nenhum teste registrado ainda</p>
+        <p class="empty-text">Os resultados aparecem aqui assim que você rodar a primeira medição.</p>
+        <button class="btn-primary" data-view="test" type="button">Ir para o teste</button>
+      </div>
+
+      <p class="folder" id="folder"></p>
+    </main>
+
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
